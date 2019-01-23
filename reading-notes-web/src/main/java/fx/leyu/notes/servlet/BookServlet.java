@@ -1,5 +1,7 @@
 package fx.leyu.notes.servlet;
 
+import fx.leyu.notes.service.impl.BookServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +17,8 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        write(resp, "Json String");
+        String json = new BookServiceImpl().getBook("ss");
+        write(resp, json);
     }
 
     private void write(HttpServletResponse resp, String json) {

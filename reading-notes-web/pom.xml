@@ -39,9 +39,9 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.sun.xml.fastinfoset/FastInfoset -->
         <dependency>
-            <groupId>com.sun.xml.fastinfoset</groupId>
-            <artifactId>FastInfoset</artifactId>
-            <version>1.2.16</version>
+            <groupId>fx.leyu.notes</groupId>
+            <artifactId>reading-notes-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

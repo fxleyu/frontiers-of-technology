@@ -10,6 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>reading-notes-web</module>
+        <module>reading-notes-service</module>
     </modules>
 
 
