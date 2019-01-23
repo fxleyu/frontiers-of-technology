@@ -1,6 +1,7 @@
 package fx.leyu.notes.servlet;
 
-import fx.leyu.notes.service.impl.BookServiceImpl;
+import fx.leyu.notes.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class BookServlet extends HttpServlet {
+    @Autowired
+    private BookService bookService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -17,8 +21,8 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String json = new BookServiceImpl().getBook("ss");
-        write(resp, json);
+        String json = bookService.getBook("ss");
+        write(resp, json + "autowired");
     }
 
     private void write(HttpServletResponse resp, String json) {

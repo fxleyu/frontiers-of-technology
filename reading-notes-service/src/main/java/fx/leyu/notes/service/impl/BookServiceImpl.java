@@ -1,7 +1,9 @@
 package fx.leyu.notes.service.impl;
 
 import fx.leyu.notes.service.BookService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BookServiceImpl implements BookService {
     @Override
     public String getBook(String isbn) {
