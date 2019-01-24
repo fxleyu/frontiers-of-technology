@@ -10,6 +10,15 @@
         <url-pattern>/book</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>people</servlet-name>
+        <servlet-class>fx.leyu.notes.servlet.PeopleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>people</servlet-name>
+        <url-pattern>/people</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
