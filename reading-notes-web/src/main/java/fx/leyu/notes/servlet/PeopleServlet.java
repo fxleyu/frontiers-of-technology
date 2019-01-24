@@ -33,7 +33,7 @@ public class PeopleServlet extends HttpServlet {
 
         String result = "the pin is not valid";
         if (StringUtils.isNotBlank(pin)) {
-            result = peopleService.isValid(pin) ? "SUCCESS" : "this pin had been used";
+            result = peopleService.register(pin) ? "SUCCESS" : "this pin had been used";
         }
         write(resp, result);
     }
