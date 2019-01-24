@@ -29,8 +29,19 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String json = bookService.getBook("SIBN");
-        write(resp, json + "autowired");
+        String sibn = req.getParameter("sibn");
+        String info = req.getParameter("info");
+
+        String result = null;
+        if (sibn != null) {
+            if (info != null) {
+                result = bookService.storeBook(sibn, info) ? "success" : "fail";
+            } else {
+                result = bookService.getBook(sibn);
+            }
+        }
+
+        write(resp, result == null ? "" : result);
     }
 
     private void write(HttpServletResponse resp, String json) {

@@ -2,18 +2,32 @@ package fx.leyu.notes.service.impl;
 
 import fx.leyu.notes.service.BookService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class BookServiceImpl implements BookService {
+    private Map<String, String> store = new HashMap<>();
+    {
+        store.put("9787559627759", "The Sun");
+        store.put("9787540489069", "A Visit from the Goon Squad");
+    }
+
+
     @Override
     public String getBook(String isbn) {
-        return "作者: [美]李昂·戈拉伯（Leon Golub） / [美]杰伊·帕萨乔夫（Jay M.Pasachoff） \n" +
-                "出版社: 北京联合出版公司\n" +
-                "原作名: The Sun\n" +
-                "译者: 青年天文教师连线 \n" +
-                "出版年: 2019-1\n" +
-                "定价: 259.00元\n" +
-                "装帧: 精装\n" +
-                "ISBN: 9787559627759";
+        String name = store.get(isbn);
+        return StringUtils.isEmpty(name) ? "error isbn " + isbn : name;
+    }
+
+    @Override
+    public boolean storeBook(String isbn, String info) {
+        if (store.containsKey(isbn)) {
+            return false;
+        }
+        store.put(isbn, info);
+        return true;
     }
 }
