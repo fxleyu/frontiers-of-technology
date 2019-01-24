@@ -6,7 +6,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,19 +16,19 @@ public class BookServlet extends HttpServlet {
     private BookService bookService;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         ServletContext context = getServletContext();
         WebApplicationContext springContext = WebApplicationContextUtils.getWebApplicationContext(context);
         bookService = springContext.getBean(BookService.class);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         doPost(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String isbn = req.getParameter("isbn");
         String info = req.getParameter("info");
 
