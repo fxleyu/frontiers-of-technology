@@ -1,6 +1,7 @@
 package fx.leyu.notes.servlet;
 
 import fx.leyu.notes.service.BookService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -29,34 +30,28 @@ public class BookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sibn = req.getParameter("sibn");
+        String isbn = req.getParameter("isbn");
         String info = req.getParameter("info");
 
-        String result = null;
-        if (sibn != null) {
-            if (info != null) {
-                result = bookService.storeBook(sibn, info) ? "success" : "fail";
+        String result = "isbn is empty";
+        if (StringUtils.isNotBlank(isbn)) {
+            if (StringUtils.isNotBlank(info)) {
+                result = bookService.storeBook(isbn, info) ? "SUCCESS" : "FAIL";
             } else {
-                result = bookService.getBook(sibn);
+                result = bookService.getBook(isbn);
             }
         }
 
-        write(resp, result == null ? "" : result);
+        write(resp, result);
     }
 
     private void write(HttpServletResponse resp, String json) {
-        PrintWriter writer = null;
-        try {
-            resp.setCharacterEncoding("utf-8");
-            writer = resp.getWriter();
+        resp.setCharacterEncoding("utf-8");
+        try (PrintWriter writer = resp.getWriter()) {
             writer.write(json);
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                writer.close();
-            }
         }
     }
 }

@@ -1,33 +1,33 @@
 package fx.leyu.notes.service.impl;
 
+import com.google.common.collect.Maps;
 import fx.leyu.notes.service.BookService;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class BookServiceImpl implements BookService {
-    private Map<String, String> store = new HashMap<>();
-    {
-        store.put("9787559627759", "The Sun");
-        store.put("9787540489069", "A Visit from the Goon Squad");
+    private static final Map<String, String> STORE = Maps.newConcurrentMap();
+
+    static {
+        STORE.put("9787559627759", "The Sun");
+        STORE.put("9787540489069", "A Visit from the Goon Squad");
     }
 
 
     @Override
     public String getBook(String isbn) {
-        String name = store.get(isbn);
-        return StringUtils.isEmpty(name) ? "error isbn " + isbn : name;
+        return MapUtils.getString(STORE, isbn, "error isbn");
     }
 
     @Override
     public boolean storeBook(String isbn, String info) {
-        if (store.containsKey(isbn)) {
+        if (STORE.containsKey(isbn)) {
             return false;
         }
-        store.put(isbn, info);
+        STORE.put(isbn, info);
         return true;
     }
 }
