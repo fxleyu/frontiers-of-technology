@@ -7,10 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -39,6 +36,8 @@ public class PeopleServlet extends HttpServlet {
             if (StringUtils.isNotBlank(pin) && peopleService.register(pin)) {
                 result = "LOGIN SUCCESS";
                 setLoginStatus(req.getSession());
+                Cookie cookie = new Cookie("pin", pin);
+                resp.addCookie(cookie);
             }
         }
         write(resp, result);
