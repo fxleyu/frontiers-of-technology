@@ -1,6 +1,7 @@
 package fx.leyu.notes.servlet;
 
 import fx.leyu.notes.service.PeopleService;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -9,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -29,13 +31,34 @@ public class PeopleServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String pin = req.getParameter("pin");
-
-        String result = "the pin is not valid";
-        if (StringUtils.isNotBlank(pin)) {
-            result = peopleService.register(pin) ? "SUCCESS" : "this pin had been used";
+        boolean hasLogin = checkLoginStatus(req);
+        String result = "HAS LOGIN! WELCOME!";
+        if (!hasLogin) {
+            result = "LOGIN ERROR!";
+            String pin = req.getParameter("pin");
+            if (StringUtils.isNotBlank(pin) && peopleService.register(pin)) {
+                result = "LOGIN SUCCESS";
+                setLoginStatus(req.getSession());
+            }
         }
         write(resp, result);
+    }
+
+    private void setLoginStatus(HttpSession session) {
+        session.setAttribute("login_status", Boolean.TRUE);
+    }
+
+    private boolean checkLoginStatus(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            return false;
+        }
+
+        Object obj = session.getAttribute("login_status");
+        if (obj instanceof Boolean) {
+            return BooleanUtils.isTrue((Boolean) obj);
+        }
+        return false;
     }
 
     private void write(HttpServletResponse resp, String json) {
