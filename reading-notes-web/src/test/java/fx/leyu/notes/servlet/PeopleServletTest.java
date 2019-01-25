@@ -22,7 +22,7 @@ public class PeopleServletTest {
         Assert.assertTrue(peopleService.isValid("fxyuer"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = Exception.class)
     public void testException() {
         Assert.assertTrue(peopleService.register(null));
     }
