@@ -2,6 +2,8 @@ package fx.leyu.notes.web.filter;
 
 import fx.leyu.notes.service.PeopleService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -11,10 +13,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class LoginStateFilter implements Filter {
+    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     private PeopleService peopleService;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         ServletContext context = filterConfig.getServletContext();
         WebApplicationContext springContext = WebApplicationContextUtils.getWebApplicationContext(context);
         peopleService = springContext.getBean(PeopleService.class);
@@ -23,6 +27,10 @@ public class LoginStateFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        LOGGER.debug("[LOGIN] start");
+        LOGGER.info("[LOGIN] start");
+        LOGGER.warn("[LOGIN] start");
+        LOGGER.error("[LOGIN] start");
         if (!(request instanceof HttpServletRequest && response instanceof HttpServletResponse)) {
             chain.doFilter(request, response);
             return;
@@ -36,6 +44,8 @@ public class LoginStateFilter implements Filter {
         }
 
         String pin = httpServletRequest.getParameter("pin");
+        LOGGER.debug("[LOGIN] the pin is {}", pin);
+
         if (StringUtils.isBlank(pin)) {
             httpServletResponse.addCookie(new Cookie("pin", "unknown"));
             write(response, "[LOGIN_ERROR] Please take a pin!");
