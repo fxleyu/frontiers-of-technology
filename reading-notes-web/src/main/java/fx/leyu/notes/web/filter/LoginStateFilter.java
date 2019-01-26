@@ -1,5 +1,6 @@
 package fx.leyu.notes.web.filter;
 
+import fx.leyu.notes.common.log.LogUtils;
 import fx.leyu.notes.service.PeopleService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class LoginStateFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        LOGGER.debug("[LOGIN] start, the request is {}", request.getClass().getCanonicalName());
+        LogUtils.debug(LOGGER, "[LOGIN] start, the request is {}", () -> request.getClass().getCanonicalName());
         if (!(request instanceof HttpServletRequest && response instanceof HttpServletResponse)) {
             chain.doFilter(request, response);
             return;

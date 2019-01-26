@@ -28,9 +28,9 @@
     </Appenders>
 
     <Loggers>
-        <logger name="org.springframework" level="info"/>
+        <logger name="org.springframework" level="debug"/>
 
-        <logger name="fx.leyu.notes.web" level="info" includeLocation="true" additivity="false">
+        <logger name="fx.leyu.notes" level="debug" includeLocation="true" additivity="false">
             <appender-ref ref="ErrorLog"/>
             <appender-ref ref="Console"/>
         </logger>
