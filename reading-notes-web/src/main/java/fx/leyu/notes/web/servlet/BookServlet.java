@@ -1,4 +1,4 @@
-package fx.leyu.notes.servlet;
+package fx.leyu.notes.web.servlet;
 
 import fx.leyu.notes.service.BookService;
 import org.apache.commons.lang3.StringUtils;
