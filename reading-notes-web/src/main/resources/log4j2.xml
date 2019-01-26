@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="off" monitorInterval="1800">
+
+    <properties>
+        <property name="LOG_HOME">/LOG_HOME/logs/notes/logs</property>
+        <property name="DEBUG_LOG_FILE_NAME">debug</property>
+    </properties>
+
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p (%F:%L) - %m%n" />
+        </Console>
+
+        <RollingRandomAccessFile name="ErrorLog"
+                                 fileName="${LOG_HOME}/${DEBUG_LOG_FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/${DEBUG_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
+            <PatternLayout
+                    pattern="%d %-5p (%F:%L) - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <logger name="org.springframework" level="info"/>
+
+        <logger name="fx.leyu.notes.web" level="info" includeLocation="true" additivity="false">
+            <appender-ref ref="ErrorLog"/>
+            <appender-ref ref="Console"/>
+        </logger>
+
+        <root level="info" includeLocation="true">
+            <appender-ref ref="Console"/>
+        </root>
+    </Loggers>
+</Configuration>
