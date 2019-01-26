@@ -1,7 +1,6 @@
 package fx.leyu.notes.web.filter;
 
 import fx.leyu.notes.service.PeopleService;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
