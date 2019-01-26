@@ -23,12 +23,13 @@ public class LoginStateFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        if (!(request instanceof HttpServletRequest)) {
+        if (!(request instanceof HttpServletRequest && response instanceof HttpServletResponse)) {
             chain.doFilter(request, response);
             return;
         }
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         if (checkLoginStatus(httpServletRequest.getSession())) {
             chain.doFilter(request, response);
             return;
@@ -36,11 +37,12 @@ public class LoginStateFilter implements Filter {
 
         String pin = httpServletRequest.getParameter("pin");
         if (StringUtils.isBlank(pin)) {
+            httpServletResponse.addCookie(new Cookie("pin", "unknown"));
             write(response, "[LOGIN_ERROR] Please take a pin!");
             return;
         }
 
-
+        httpServletResponse.addCookie(new Cookie("pin", pin));
         if (peopleService.isValid(pin) || peopleService.register(pin)) {
             logOnStatus(httpServletRequest.getSession());
             chain.doFilter(request, response);
