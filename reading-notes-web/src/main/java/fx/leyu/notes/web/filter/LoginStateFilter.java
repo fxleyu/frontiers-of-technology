@@ -36,7 +36,7 @@ public class LoginStateFilter implements Filter {
 
         String pin = httpServletRequest.getParameter("pin");
         if (StringUtils.isBlank(pin)) {
-            write(response, "请携带 pin 信息");
+            write(response, "[LOGIN_ERROR] Please take a pin!");
             return;
         }
 
@@ -45,7 +45,7 @@ public class LoginStateFilter implements Filter {
             logOnStatus(httpServletRequest.getSession());
             chain.doFilter(request, response);
         } else {
-            write(response, "请携带一个独特的 pin");
+            write(response, "[LOGIN_ERROR] Please take a unique pin!");
         }
     }
 
@@ -65,7 +65,6 @@ public class LoginStateFilter implements Filter {
 
     @Override
     public void destroy() {
-        // do nothing
     }
 
     private void write(ServletResponse resp, String json) {
