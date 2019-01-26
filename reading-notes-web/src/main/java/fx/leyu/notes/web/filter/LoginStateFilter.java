@@ -27,10 +27,7 @@ public class LoginStateFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        LOGGER.debug("[LOGIN] start");
-        LOGGER.info("[LOGIN] start");
-        LOGGER.warn("[LOGIN] start");
-        LOGGER.error("[LOGIN] start");
+        LOGGER.debug("[LOGIN] start, the request is {}", request.getClass().getCanonicalName());
         if (!(request instanceof HttpServletRequest && response instanceof HttpServletResponse)) {
             chain.doFilter(request, response);
             return;
