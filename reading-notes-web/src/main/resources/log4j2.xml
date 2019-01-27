@@ -11,14 +11,14 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <!-- pattern="%d %-5p (%F:%L) - %m%n" -->
-            <PatternLayout pattern="%d - %m%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%p][%t] %m%n" />
         </Console>
 
         <RollingRandomAccessFile name="ErrorLog"
                                  fileName="${LOG_HOME}/${DEBUG_LOG_FILE_NAME}.log"
                                  filePattern="${LOG_HOME}/${DEBUG_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
             <PatternLayout
-                    pattern="%d - %m%n"/>
+                    pattern="%d [%p][%t] %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
