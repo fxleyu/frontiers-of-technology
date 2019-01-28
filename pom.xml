@@ -12,6 +12,7 @@
         <module>reading-notes-web</module>
         <module>reading-notes-service</module>
         <module>reading-notes-common</module>
+        <module>reading-notes-domain</module>
     </modules>
 
 

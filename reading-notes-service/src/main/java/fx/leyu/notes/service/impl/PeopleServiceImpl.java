@@ -2,13 +2,13 @@ package fx.leyu.notes.service.impl;
 
 import com.google.common.collect.Sets;
 import fx.leyu.notes.service.PeopleService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-@Component
+@Service
 public class PeopleServiceImpl implements PeopleService {
     private static final Set<String> STORE = Sets.newConcurrentHashSet();
     static {

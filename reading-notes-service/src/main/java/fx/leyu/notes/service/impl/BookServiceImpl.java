@@ -3,11 +3,11 @@ package fx.leyu.notes.service.impl;
 import com.google.common.collect.Maps;
 import fx.leyu.notes.service.BookService;
 import org.apache.commons.collections4.MapUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-@Component
+@Service
 public class BookServiceImpl implements BookService {
     private static final Map<String, String> STORE = Maps.newConcurrentMap();
 
