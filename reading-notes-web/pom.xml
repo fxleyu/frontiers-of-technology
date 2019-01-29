@@ -35,6 +35,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.3.17.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
 
     </dependencies>
 
