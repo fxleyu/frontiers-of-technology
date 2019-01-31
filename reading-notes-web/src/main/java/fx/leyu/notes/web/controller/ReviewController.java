@@ -1,7 +1,6 @@
 package fx.leyu.notes.web.controller;
 
 import fx.leyu.notes.common.content.JsonUtils;
-import fx.leyu.notes.domain.Review;
 import fx.leyu.notes.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,7 @@ public class ReviewController {
 
     @RequestMapping("/")
     public @ResponseBody String query(@RequestParam String ISBN) {
-        List<Review> result = ReviewService.gainReviewsOfBook(ISBN);
+        List<String> result = ReviewService.gainReviewsOfBook(ISBN);
         LOGGER.debug("[{}] the result is {}", this.getClass().getCanonicalName(), result);
         return JsonUtils.toJson(result);
     }

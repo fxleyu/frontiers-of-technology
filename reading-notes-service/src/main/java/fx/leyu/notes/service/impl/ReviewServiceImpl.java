@@ -12,18 +12,18 @@ import java.util.Map;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-    private static Map<String, List<Review>> STORE = Maps.newConcurrentMap();
+    private static Map<String, List<String>> STORE = Maps.newConcurrentMap();
 
     @Override
-    public List<Review> gainReviewsOfBook(String ISBN) {
+    public List<String> gainReviewsOfBook(String ISBN) {
         return MapUtils.getObject(STORE, ISBN, Lists.newArrayList());
     }
 
     @Override
     public void storeReview(String ISBN, String userId, String review) {
         // TODO unsafe
-        List<Review> bookReviews = MapUtils.getObject(STORE, ISBN, Lists.newArrayList());
-        bookReviews.add(new Review(ISBN, userId, review));
+        List<String> bookReviews = MapUtils.getObject(STORE, ISBN, Lists.newArrayList());
+        bookReviews.add(review);
         STORE.put(ISBN, bookReviews);
     }
 }

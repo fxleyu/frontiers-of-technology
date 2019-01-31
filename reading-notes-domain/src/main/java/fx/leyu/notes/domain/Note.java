@@ -1,11 +1,11 @@
 package fx.leyu.notes.domain;
 
-public class Review {
+public class Note {
     private long id;
     private long readerId;
-    private long bookId;
     private long timestamp;
-    private String rating;
+    private String readerUsername;
+    private String readerName;
     private String title;
     private String content;
 
@@ -25,14 +25,6 @@ public class Review {
         this.readerId = readerId;
     }
 
-    public long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(long bookId) {
-        this.bookId = bookId;
-    }
-
     public long getTimestamp() {
         return timestamp;
     }
@@ -41,12 +33,20 @@ public class Review {
         this.timestamp = timestamp;
     }
 
-    public String getRating() {
-        return rating;
+    public String getReaderUsername() {
+        return readerUsername;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setReaderUsername(String readerUsername) {
+        this.readerUsername = readerUsername;
+    }
+
+    public String getReaderName() {
+        return readerName;
+    }
+
+    public void setReaderName(String readerName) {
+        this.readerName = readerName;
     }
 
     public String getTitle() {
