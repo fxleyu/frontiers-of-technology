@@ -2,7 +2,6 @@ package fx.leyu.notes.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import fx.leyu.notes.domain.Review;
 import fx.leyu.notes.service.ReviewService;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
