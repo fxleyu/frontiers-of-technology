@@ -1,11 +1,11 @@
 package fx.leyu.notes.domain;
 
-public class ReadReview {
+public class Review {
     private String ISBN;
     private String userId;
     private String review;
 
-    public ReadReview(String ISBN, String userId, String review) {
+    public Review(String ISBN, String userId, String review) {
         this.ISBN = ISBN;
         this.userId = userId;
         this.review = review;
@@ -37,7 +37,7 @@ public class ReadReview {
 
     @Override
     public String toString() {
-        return "ReadReview{" +
+        return "Review{" +
                 "ISBN='" + ISBN + '\'' +
                 ", userId='" + userId + '\'' +
                 ", review='" + review + '\'' +

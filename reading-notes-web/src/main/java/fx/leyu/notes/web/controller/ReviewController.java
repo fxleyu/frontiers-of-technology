@@ -1,8 +1,8 @@
 package fx.leyu.notes.web.controller;
 
 import fx.leyu.notes.common.content.JsonUtils;
-import fx.leyu.notes.domain.ReadReview;
-import fx.leyu.notes.service.ReadReviewService;
+import fx.leyu.notes.domain.Review;
+import fx.leyu.notes.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/book/review")
-public class ReadReviewController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReadReviewController.class);
+public class ReviewController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReviewController.class);
     @Autowired
-    private ReadReviewService readReviewService;
+    private ReviewService ReviewService;
 
     @RequestMapping("/")
     public @ResponseBody String query(@RequestParam String ISBN) {
-        List<ReadReview> result = readReviewService.gainReviewsOfBook(ISBN);
+        List<Review> result = ReviewService.gainReviewsOfBook(ISBN);
         LOGGER.debug("[{}] the result is {}", this.getClass().getCanonicalName(), result);
         return JsonUtils.toJson(result);
     }
@@ -32,7 +32,7 @@ public class ReadReviewController {
     public @ResponseBody String write(@RequestParam String ISBN,
                                       @RequestParam String peopleId,
                                       @RequestParam String review) {
-        readReviewService.storeReview(ISBN, peopleId, review);
+        ReviewService.storeReview(ISBN, peopleId, review);
         return "";
     }
 }
