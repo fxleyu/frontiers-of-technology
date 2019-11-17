@@ -9,6 +9,12 @@
 
 基于业务领域进行重构
 
+## 结构
+- web
+- domain
+- service
+- common
+
 ## 技术栈
 - [框架] Servlet
 - [框架] Spring
