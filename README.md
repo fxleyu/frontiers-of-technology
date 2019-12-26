@@ -21,8 +21,8 @@
 - [框架] Spring MVC
 - [工具] aspectJ
 - [工具] fastjson
-- [测试] Spring Test + JUnit
-- [日志] self4j + log4j
+- [测试] Spring Test + JUnit + EasyMock
+- [日志] self4j + log4j 
 - [项目管理] Maven
 - [项目管理] Git
 
