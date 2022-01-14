@@ -19,6 +19,7 @@
 - [框架] Servlet
 - [框架] Spring
 - [框架] Spring MVC
+- [框架] MyBatis
 - [工具] aspectJ
 - [工具] fastjson
 - [测试] Spring Test + JUnit + EasyMock
