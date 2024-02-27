@@ -2,11 +2,8 @@
 > To explore frontiers of technology (FOT)
 
 一个用于练习所学技术的项目。
-
 规划该项目是书籍引用库。
-
 实践项目架构
-
 基于业务领域进行重构
 
 ## 结构
